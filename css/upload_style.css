@@ -1,0 +1,32 @@
+html,
+body{
+	height: 100%;
+	background-color: #4791D2;
+}
+body{
+	text-align: center;
+}
+.row{
+	margin-top: 50px;
+}
+.upload-btn{
+	color: #fff;
+	background-color: #F89406;
+}
+.glyphicon{
+	font-size: 5em;
+}
+h2{
+	margin-top: 15px;
+}
+.panel{
+	padding: 20px 0 20px 0;
+}
+#upload-input{
+	display: none;
+}
+@media (min-width: 992px) {
+  .container {
+    width: 450px;
+  }
+}

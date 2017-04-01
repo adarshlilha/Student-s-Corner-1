@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Students Corner</title>
+		<link rel="stylesheet" href="/css/bootstrap.min.css">
+		<script src="/js/jquery.min.js"></script>
+		<script src="/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
+	  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	  	<link href="https://fonts.googleapis.com/css?family=Harmattan" rel="stylesheet"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="css/style_login.css">
+		<link rel="shortcut icon" type="image/png" href="images/favicon.png"/>
+		<link rel="stylesheet" href="css/animate.css">
+	</head>
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<div style="position: relative;">
+					<div id="box" class="col-lg-3 col-md-3 col-sm-3 col-2">
+						<img src="images/logo.png" style="width: 25%;height: 25%;">
+						<h2>StudentsCorner</h2>
+						<p id="subtitle">The Digital Corner</p>
+						<div class="signin">
+							<div id="login_input">
+								<input type="text" placeholder="Email" id="email"/><br>
+								<input type="password" placeholder="Password" id="password"><br>
+								<button type="button" class="btn btn-success" id="signin_btn" value="login">Sign In</button>
+							</div>
+							<p>Dont have an account <strong><span id="signuplink">Sign Up</span></strong> here</p>
+							<p style="margin-top:9%;color: #3A3A3A;">Built with all the ♥ in India</p>
+						</div>
+					</div>
+				</div>
+				
+				<div id="box1_wrapper" style="position: relative;">
+					<div id="box1" class="col-lg-4">
+						<h2>StudentsCorner</h2>
+						<p style="font-size: 17px;">Sign Up to study digital</p>
+						<div class="signin">
+							<div id="login_input">
+								<input type="text" placeholder="Full Name" id="name" /><br>
+								<input type="text" placeholder="Email" id="new_email" /><br>
+								<input type="password" placeholder="Password" id="new_password"><br>
+								<input type="password" placeholder="Confirm Password" id="conf_password"><br>
+								<div id="roles" >
+									<p>Sign Up as </p>
+									<div>
+										<input type="radio" id="f-option" name="teacherorStu" value="Teacher">
+				    						<label for="f-option">Teacher</label>
+				    					<input type="radio" id="f-option" name="teacherorStu" value="Student">
+				    						<label for="f-option">Student</label>
+									</div>
+								</div>
+								<div class="clearfix"></div>
+								<button type="button" class="btn btn-success" value="register" id="signup_btn">Sign Up</button>
+							</div>
+							<p>Already have an account <strong><span id="signinlink">Sign In</span></strong> here</p>
+							<p style="margin-top:9%;color: #3A3A3A;">Built with all the ♥ in India</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script>
+		$('#signuplink').click(function() {
+			$('#box').css({ "display":"none" });
+			$('#box1').css({ "display":"block" });
+		});
+		$('#signinlink').click(function() {
+			$('#box1').css({ "display":"none" });
+			$('#box').css({ "display":"block" });
+		});
+	</script>	
+	<script type="text/javascript" src="main.js"></script>
+</html>

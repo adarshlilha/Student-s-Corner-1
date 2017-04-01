@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Students Corner</title>
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link type="text/css" rel="stylesheet" href="css/style.css"/>
+	<link rel="shortcut icon" type="image/png" href="images/favicon.png"/>
+	<link rel="stylesheet" href="css/animate.css">
+</head>
+<body id="share">
+	<div class="navbar navbar-default navbar-static-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#search_bar">
+					<i class="fa fa-search"></i>
+				</button>
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavbar">
+					<i class="fa fa-bars"></i>
+				</button>
+				<a href="index.html" class="navbar-brand">Students Corner</a>
+			</div>
+			<div class="col-sm-6" id="search_bar"><!-- search bar -->
+  				<div class="right-inner-addon">
+	    			<i class="fa fa-search"></i>
+	    			<input type="search" class="form-control" placeholder="Search" />
+				 </div>
+			</div>
+
+			<div class="navbar-collapse collapse" id="mainNavbar">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#" id="loggedInUser"><i class="fa fa-user"></i> Pooja Khandhadia</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="left">
+	 	<ul class="nav nav-pills nav-stacked" style="width: 50px;float: left;position: fixed;height: 100%;">
+		    <li><a href="#">Link</a></li>
+		    <li><a href="#">Link</a></li>
+		    <li><a href="#">Link</a></li>
+		    <li><a href="#">Link</a></li>
+		    <li><a href="#">Link</a></li>
+	  	</ul>
+	</div>
+	<iframe src="https://calendar.google.com/calendar/embed?title=Institute%20of%20Engineering%20%26%20Management%2C%20Kolkata%20Ashram%20Campus&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;height=600&amp;wkst=1&amp;hl=en&amp;bgcolor=%23ccccff&amp;src=97gp8roefl8ocrv9ko0h90pse4%40group.calendar.google.com&amp;color=%238C500B&amp;ctz=Asia%2FCalcutta" style="border:solid 1px #777" width="650" height="500" frameborder="2" scrolling="yes"></iframe>
+	<div id="home_right">
+		<div id="buttons">
+			<button type="button" class="btn btn-success" id="add_btn"><span class="glyphicon glyphicon-plus"></span><br>ADD</button>
+			<button type="button" class="btn btn-primary" id="like_btn"><span class="glyphicon glyphicon-thumbs-up"></span><br>LIKE</button>
+			<button type="button" class="btn btn-danger btn-lg" id="unlike_btn"><span class="glyphicon glyphicon-thumbs-down"></span><br>DIDN'T UNDERSTAND</button>
+		</div>
+		<div id="recent_act">
+			<p>Recent Activity</p>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="main.js"></script>
+</html>

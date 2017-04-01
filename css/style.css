@@ -1,0 +1,73 @@
+.left>ul>li{
+  padding-bottom: 30%;
+}
+html{
+  height: 100%;
+}
+body{
+  background-color: rgb(233,234,238);
+  height: 100%;
+}
+#home_right{
+  height: 500px;
+  width: 500px;
+  float: right;
+}
+#buttons{
+  width: 400px;
+}
+#buttons button{
+  margin-left: 1%;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  border-style: none;
+}
+#add_btn{
+  background-color: #8DCA8F;
+  padding: 12px 40px;
+}
+.glyphicon-plus,.glyphicon-thumbs-up,.glyphicon-thumbs-down{
+  font-size: 27px;
+  margin-bottom: 8px;
+}
+#like_btn{
+  background-color: #5bc0de;
+  padding: 12px 40px;
+}
+#unlike_btn{
+  background-color: #D9544F;
+  padding: 12.3px 4px;
+  font-size: 14px;
+}
+
+#recent_act{
+  border: 1px solid #b2b2b2;
+  height: 400px;
+  width: 400px;
+  background-color: #fff;
+}
+#recent_act p{
+  border-bottom: 1px solid #d0d0d0;
+  font-size: 30px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 500;
+  margin-left: 10px;
+}
+.right-inner-addon {
+  position: relative;
+  margin-top: 1%;
+}
+
+.right-inner-addon input {
+  padding-right: 30px;
+}
+
+.right-inner-addon i {
+  position: absolute;
+  right: 0px;
+  padding: 10px 12px;
+  pointer-events: none;
+}
+iframe{
+  margin-left: 6%;
+}
