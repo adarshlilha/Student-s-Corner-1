@@ -1,0 +1,88 @@
+.clear{
+  clear: both;
+}
+html{
+  height: 100%;
+}
+body{
+  background-color: rgb(233,234,238);
+  height: 100%;
+}
+.navbar-default{
+  background-color: #222222;
+  border-bottom: none;
+}
+.navbar-default .navbar-brand{
+  color: white;
+}
+.right-inner-addon {
+  position: relative;
+  margin-top: 1%;
+}
+
+.right-inner-addon input {
+  padding-right: 30px;
+  margin-bottom: 5px;
+  height: 25px;
+}
+
+.right-inner-addon i {
+  position: absolute;
+  right: 0px;
+  padding: 10px 12px;
+  pointer-events: none;
+}
+#loggedInUser{
+  font-weight: bold;
+  float: left;
+  margin-right: -20px;
+}
+#mainNavbar ul li{
+  display: inline-block;
+}
+.fa-user{
+  margin-right: -10px;
+}
+.homepage_div{
+  width: 100%;
+  margin-top: 7%;
+}
+.left{
+  background-color: #222222;
+  width: 5%;
+  height: 640px;
+  position: fixed;
+  margin-top: -4%;
+}
+.left ul{
+  margin-top: 3%;
+}
+.left>ul>li>a{
+  padding-bottom: 30%;
+  cursor: pointer;
+  color: #c2afaf;
+}
+#up{
+  background-color: #DBDBDB;
+  margin-left: 240px;
+  height: 60px;
+  width: 80%;
+}
+select{
+  padding:2px;
+  margin: 1% 0 1% 3%;
+  width: 225px;
+}
+#buttons{
+  float: right;
+  margin: 1% 2% 1% 3%;
+}
+table{
+  margin: 3% 0 0 6%;
+  width: 90%;
+}
+td{
+  border:1px solid black;
+  height: 200px;
+  margin-left: 10%;
+}

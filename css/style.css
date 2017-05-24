@@ -1,5 +1,5 @@
-.left>ul>li{
-  padding-bottom: 30%;
+.clear{
+  clear: both;
 }
 html{
   height: 100%;
@@ -8,6 +8,76 @@ body{
   background-color: rgb(233,234,238);
   height: 100%;
 }
+.navbar-default{
+  background-color: #222222;
+  border-bottom: none;
+}
+.navbar-default .navbar-brand{
+  color: white;
+}
+.right-inner-addon {
+  position: relative;
+  margin-top: 1%;
+}
+
+.right-inner-addon input {
+  padding-right: 30px;
+  margin-bottom: 5px;
+  height: 25px;
+}
+
+.right-inner-addon i {
+  position: absolute;
+  right: 0px;
+  padding: 10px 12px;
+  pointer-events: none;
+}
+#loggedInUser{
+  font-weight: bold;
+  float: left;
+  margin-right: -20px;
+}
+#mainNavbar ul li{
+  display: inline-block;
+}
+.fa-user{
+  margin-right: -10px;
+}
+.homepage_div{
+  width: 100%;
+}
+.left ul{
+  margin-top: 3%;
+}
+.left>ul>li>a{
+  padding-bottom: 30%;
+  cursor: pointer;
+  color: #c2afaf;
+}
+#calendar{
+    float: left;
+    width: 40%;
+    margin: 2% 0 0 18%;
+    padding-left:20px;
+}
+#right{
+
+}
+#recent_act{
+  border: 1px solid #b2b2b2;
+  height: 500px;
+  width: 400px;
+  background-color: #fff;
+  margin-left: 30%;
+}
+#recent_act p{
+  border-bottom: 1px solid #d0d0d0;
+  font-size: 30px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 500;
+  margin-left: 10px;
+}
+
 #home_right{
   height: 500px;
   width: 500px;
@@ -15,19 +85,22 @@ body{
 }
 #buttons{
   width: 400px;
+  float: right;
 }
 #buttons button{
-  margin-left: 1%;
+  margin:7% 0 0 36%;
   margin-bottom: 10px;
   border-radius: 6px;
   border-style: none;
+  width:175px;
+
 }
 #add_btn{
   background-color: #8DCA8F;
   padding: 12px 40px;
 }
-.glyphicon-plus,.glyphicon-thumbs-up,.glyphicon-thumbs-down{
-  font-size: 27px;
+.glyphicon-plus{
+  
   margin-bottom: 8px;
 }
 #like_btn{
@@ -39,35 +112,21 @@ body{
   padding: 12.3px 4px;
   font-size: 14px;
 }
-
-#recent_act{
-  border: 1px solid #b2b2b2;
-  height: 400px;
-  width: 400px;
-  background-color: #fff;
+#exam_routine ul li{
+  list-style: none;
+  display: inline;
 }
-#recent_act p{
-  border-bottom: 1px solid #d0d0d0;
-  font-size: 30px;
-  font-family: 'Raleway', sans-serif;
-  font-weight: 500;
-  margin-left: 10px;
+#exam_routine ul li input,input{
+  width: 150px;
+  text-align: center;
 }
-.right-inner-addon {
-  position: relative;
-  margin-top: 1%;
+#tot_stu{
+  background-color: #CCCCFF;
+  width: 210px;
+  padding: 3px;
+  text-align: center;
+  margin: 5% auto auto 40%;
 }
-
-.right-inner-addon input {
-  padding-right: 30px;
-}
-
-.right-inner-addon i {
-  position: absolute;
-  right: 0px;
-  padding: 10px 12px;
-  pointer-events: none;
-}
-iframe{
-  margin-left: 6%;
+#daily_routine table tbody tr td input{
+  width: 50px;
 }

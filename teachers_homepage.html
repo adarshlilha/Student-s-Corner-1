@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- <title>Students Corner</title>
+	<link type="text/css" rel="stylesheet" href="css/style.css"/>
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="images/favicon.png"/>
+	<link rel="stylesheet" href="css/animate.css">
+	<link rel="stylesheet" href="css/navbar.css"> -->
+    <title>Students Corner</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+    <div>
+        <h2 style="margin: 2% 0 0 33%;">Academic Calendar</h2>
+    	<div id="calendar">
+    		<iframe src="https://calendar.google.com/calendar/embed?title=Institute%20of%20Engineering%20%26%20Management%2C%20Kolkata%20Ashram%20Campus&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;height=600&amp;wkst=1&amp;hl=en&amp;bgcolor=%23ccccff&amp;src=97gp8roefl8ocrv9ko0h90pse4%40group.calendar.google.com&amp;color=%238C500B&amp;ctz=Asia%2FCalcutta" style="border:solid 1px #777" width="650" height="500" frameborder="2" scrolling="yes"></iframe>
+    	</div>
+		<div id="buttons">
+			<button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>Take Attendance</button><br>
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exam_routine"><span class="glyphicon glyphicon-plus"></span>Add Exam Routine</button><br>
+			<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#daily_routine"><span class="glyphicon glyphicon-plus"></span>Add Daily Routine</button><br>
+			<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#announcements" id="announcements_btn"><span class="glyphicon glyphicon-plus"></span>Add Announcements</button>
+	   </div>
+	   <!-- <div id="tot_stu">
+			<h3>Total number of students : <br> 60</h3>
+		</div>
+		<div id="tot_stu">
+			<h3>Number of students present today : <br> 54/60</h3>
+		</div>
+		<div id="tot_stu">
+			<h3>Present percentage of this week : <br> 79%</h3>
+		</div> -->
+	</div>
+	<div class="modal fade text-center" id="daily_routine">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h2 class="modal-title">Daily Routine</h2>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>   
+                                <th></th>
+                                <th>1st Period</th>
+                                <th>2nd Period</th>
+                                <th>3rd Period</th>
+                                <th>4th Period</th>
+                                <th>5th Period</th>
+                                <th>6th Period</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                <tr>
+                                    <th>Tuesday</th>
+                                    <td><input type="text" placeholder="Sub" class="subject" ></td>
+                                    <td><input type="text" placeholder="Sub" class="subject"></td>
+                                    <td><input type="text" placeholder="Sub" class="subject" ></td>
+                                    <td><input type="text" placeholder="Sub" class="subject"></td>
+                                    <td><input type="text" placeholder="Sub" class="subject"></td>
+                                    <td><input type="text" placeholder="Sub" class="subject"></td>
+                                </tr>
+                                <tr>
+                                    <th>Wednesday</th>
+                                    <td><input type="text" placeholder="Sub" class="subject"></td>
+                                    <td><input type="text" placeholder="Sub" class="subject"></td>
+                                    <td><input type="text" placeholder="Sub" class="subject" ></td>
+                                    <td><input type="text" placeholder="Sub" class="subject"></td>
+                                    <td><input type="text" placeholder="Sub" class="subject"></td>
+                                    <td><input type="text" placeholder="Sub" ></td>
+                                </tr>
+                                <tr>
+                                    <th>Thursday</th>
+                                    <td><input type="text" placeholder="Sub" class="subject"></td>
+                                    <td><input type="text" placeholder="Sub" class="subject"></td>
+                                    <td><input type="text" placeholder="Sub" class="subject" ></td>
+                                    <td><input type="text" placeholder="Sub" class="subject"></td>
+                                    <td><input type="text" placeholder="Sub" class="subject"></td>
+                                    <td><input type="text" placeholder="Sub" class="subject"></td>
+                                </tr>
+                                <tr>
+                                    <th>Friday</th>
+                                    <td><input type="text" placeholder="Sub" class="subject"></td>
+                                    <td><input type="text" placeholder="Sub" class="subject"></td>
+                                    <td><input type="text" placeholder="Sub" class="subject" ></td>
+                                    <td><input type="text" placeholder="Sub" class="subject"></td>
+                                    <td><input type="text" placeholder="Sub" class="subject"></td>
+                                    <td><input type="text" placeholder="Sub" class="subject"></td>
+                                </tr>
+                                <tr>
+                                    <th>Saturday</th>
+                                    <td><input type="text" placeholder="Sub" class="subject"></td>
+                                    <td><input type="text" placeholder="Sub" class="subject"></td>
+                                    <td><input type="text" placeholder="Sub" class="subject" ></td>
+                                    <td><input type="text" placeholder="Sub" class="subject"></td>
+                                    <td><input type="text" placeholder="Sub" class="subject"></td>
+                                    <td><input type="text" placeholder="Sub" class="subject"></td>
+                                </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="addDailyRoutine">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+	<div class="modal fade text-center" id="announcements">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+            		<button type="button" class="close" data-dismiss="modal">&times;</button>
+            		<h2 class="modal-title">Announcements</h2>
+        		</div>
+        		<div class="modal-body">
+        			<textarea style="height: 250px;width: 300px" id="announcements_text"></textarea>
+        		</div>
+        		<div class="modal-footer">
+        			<button type="button" class="btn btn-danger" data-dismiss="modal">Submit</button>
+        		</div>
+        	</div>
+        </div>
+    </div>
+    <div class="modal fade text-center" id="exam_routine">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+            		<button type="button" class="close" data-dismiss="modal">&times;</button>
+            		<h2 class="modal-title">Exam Routine</h2>
+        		</div>
+        		<div class="modal-body">
+        			<div>
+        				<input type="text" placeholder="Class"> <br><br>
+        				<ul>
+        					<li><input type="text" placeholder="Date"></li>
+        					<li><input type="text" placeholder="Date"></li>
+        					<li><input type="text" placeholder="Date"></li>
+        				</ul>
+        				<br>
+        				<ul>
+        					<li><input type="text" placeholder="Time"></li>
+        					<li><input type="text" placeholder="Time"></li>
+        					<li><input type="text" placeholder="Time"></li>
+        				</ul>
+        				<br>
+        				<ul>
+        					<li><input type="text" placeholder="Subjects"></li>
+        					<li><input type="text" placeholder="Subjects"></li>
+        					<li><input type="text" placeholder="Subjects"></li>
+        				</ul>
+        			</div>
+        		</div>
+        		<div class="modal-footer">
+        			<button type="button" class="btn btn-danger" data-dismiss="modal">Submit</button>
+        		</div>
+        	</div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+	window.onload = function(){
+		var url = document.location.href;
+		var params = (url.split('=')[1]);
+		params = params.replace(/[%22]/g, '');
+		params = params.replace(/[0]/g, ' ');
+		document.getElementById("loggedInUser").text = params;
+	}
+</script>
+<script type="text/javascript" src="teachers_homepage.js"></script>
+</html>

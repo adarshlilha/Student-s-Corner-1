@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
+	  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	  	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" type="image/png" href="images/favicon.png"/>
+		<style>
+			html,body{
+				width: 100%;
+			}
+			.sidebar{
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				width: 230px;
+				height:100%;
+				display: block;
+				z-index: 1;
+				color: white;
+				float: left;
+				background: #222222 url("images/bg.png");
+				background-size: 300%;
+				border-right: 1px solid #575757;
+			}
+			#sidebar_items>ul{
+				list-style: none;
+				margin: 5px 10px 5px -20px;
+			}
+			#sidebar_items>ul>li{
+				display: inline-block;
+				width: 100%;
+				margin: 10px 0;
+				padding: 10px;
+			}
+			#sidebar_items>ul>li:hover{
+				background-color: lightblue;
+				color:black;
+			}
+			#sidebar_items>ul>li>a:hover{
+				color:black;
+			}
+			#sidebar_items>ul>li>i{
+				float: left;
+			}
+			#sidebar_items>ul>li>a{
+				text-decoration:none;
+				color: white;
+				border-radius: 10px;
+				font-size: 18px;
+				margin-left: 25px;
+			}
+			#sidebar_items>ul>li.active{
+				/*color: #575757;*/
+				opacity: 1;
+				background: #CC181E;
+			}
+			#sidebar_items>ul>li.active>a,#sidebar_items>ul>li.active>i{
+				color: #fff;
+			}
+			.navbar-default{
+				background: #222222 url("images/bg.png");
+				background-size: 50%;
+				color: #fff;
+				margin-left: 230px;
+				/*background-color: #222222;*/
+			}
+			#details h3{
+				display: inline-block;
+				text-decoration: none;
+				padding: 20px;
+			}
+			.right-inner-addon {
+		  		position: relative;
+	  			margin-top: 1%;
+			}
+			.right-inner-addon input {
+			  	padding-right: 30px;
+			  	margin-bottom: 5px;
+			  	height: 25px;
+			}
+			.right-inner-addon i {
+				position: absolute;
+				right: 0px;
+				padding: 10px 12px;
+				pointer-events: none;
+			}
+			#loggedInUser{
+	  			font-weight: bold;
+	  			float: left;
+	  			margin-right: -20px;
+			}
+			#mainNavbar ul li{
+	  			display: inline-block;
+			}
+			.fa-user{
+	  			margin-right: -10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrapper">
+			<div class="sidebar">
+				<div class="logo" style="border-bottom: 1px solid #656565;font-size: 20px;text-align: center;margin: 20px 0;">STUDENT'S CORNER
+				</div>
+				<div id="sidebar_items">
+					<ul class="testing">
+						<li class="active"><i class="fa fa-home fa-2x"></i><a href="#">HOME</a></li>
+						<li><i class="fa fa-file-text fa-2x"></i><a id="showfiles" href="">FILES</a></li>
+						<li><i class="fa fa-table fa-2x"></i><a href="http://localhost:8080/routine">ROUTINE</a></li>
+						<li><i class="fa fa-check fa-2x"></i><a href="#">ATTENDANCE</a></li>
+						<li><i class="fa fa-comments-o fa-2x"></i><a href="#">FEEDBACK</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="navbar navbar-default navbar-static-top">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#search_bar">
+							<i class="fa fa-search" style="color: black"></i>
+						</button>
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavbar">
+							<i class="fa fa-bars"></i>
+						</button>
+					</div>
+					<div class="col-sm-6" id="search_bar"><!-- search bar -->
+		  				<div class="right-inner-addon">
+			    			<i class="fa fa-search"></i>
+			    			<input type="search" class="form-control" placeholder="Search" />
+						 </div>
+					</div>
+
+					<div class="navbar-collapse collapse" id="mainNavbar">
+						<ul class="nav navbar-nav navbar-right">
+							<li style="margin-top: 15px;color: white;"><i class="fa fa-user"></i></li>
+							<li class="dropdown"><a href="#" id="loggedInUser"  style="color: white;"> Your Name </a>
+							<li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="caret" style="color: white;"></span></a>
+								<ul class="dropdown-menu text-center">
+										<li style="color: black;"><a id="profileLink" href="">My Profile</li>
+										<li><a href="http://localhost:8080/logout">Logout</a></li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+	var request = new XMLHttpRequest();
+	request.onreadystatechange = function(){
+		if (request.readyState === XMLHttpRequest.DONE){
+			if (request.status === 200){
+  				document.getElementById("loggedInUser").innerHTML = request.responseText;
+   			}
+		}
+	}
+	request.open('POST', '/getUsersName', true);
+	request.setRequestHeader('Content-Type' , 'application/json');
+	request.send();
+
+	var request1 = new XMLHttpRequest();
+	request1.onreadystatechange = function(){
+		if (request1.readyState === XMLHttpRequest.DONE){
+			if (request1.status === 200){
+				if (request1.responseText == 'student'){
+					document.getElementById("profileLink").href="http://localhost:8080/student_myprofile";
+				}
+				else if (request1.responseText == 'teacher'){
+					document.getElementById("profileLink").href="http://localhost:8080/teachers_myprofile";
+				}
+   			}
+		}
+	}
+	request1.open('POST', '/getProfileUrl', true);
+	request1.setRequestHeader('Content-Type' , 'application/json');
+	request1.send();
+
+	var request2 = new XMLHttpRequest();
+	request2.onreadystatechange = function(){
+		if (request2.readyState === XMLHttpRequest.DONE){
+			if (request2.status === 200){
+				if (request2.responseText == 'student'){
+					document.getElementById("showfiles").href="http://localhost:8080/student_showfiles";
+				}
+				else if (request2.responseText == 'teacher'){
+					document.getElementById("showfiles").href="http://localhost:8080/teachers_showfiles";
+				}
+   			}
+		}
+	}
+	request2.open('POST', '/getProfileUrl', true);
+	request2.setRequestHeader('Content-Type' , 'application/json');
+	request2.send();
+	</script>
+</html>

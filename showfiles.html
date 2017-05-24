@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Files</title>
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link type="text/css" rel="stylesheet" href="css/showfiles.css"/>
+	<link rel="shortcut icon" type="image/png" href="images/favicon.png"/>
+	<link rel="stylesheet" href="css/animate.css">
+	<link rel="stylesheet" href="css/navbar.css">
+	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  	<script src="http://localhost:8080/upload.js"></script>
+  	<style type="text/css">
+	.row{
+		margin: -15px -30px 0 -30px;
+	}
+	.upload-btn{
+		color: #fff;
+		background-color: #F89406;
+	}
+	#file_gyphicon{
+		font-size: 5em;
+	}
+	h2{
+		margin-top: 15px;
+	}
+	.panel{
+		padding: 5px 0 5px 0;
+	}
+	#upload-input{
+		display: none;
+	}
+	.modal-footer{
+		margin-top: -35px;
+	}
+</style>
+
+</head>
+<body>
+	
+	<div>
+		<div id="up">
+			<select>
+				<!-- <i class="fa fa-file-text fa-2x " aria-hidden="true"></i> -->
+				<option value="Java">Java</option>
+				<option value="C++">C++</option>
+				<option value="Networking">Networking</option>
+				<option value="Operating System">Operating System</option>
+			</select>
+			<div id="buttons">
+				<button type="button" class="btn btn-success" id="add_btn"><span class="glyphicon glyphicon-plus"></span>Add Links</button>
+				<button type="button" class="btn btn-primary" id="add_btn"><span class="glyphicon glyphicon-plus"></span>Add Papers</button>
+				<button type="button" class="btn btn-warning" id="add_btn" data-toggle="modal" data-target="#popUpWindow"><span class="glyphicon glyphicon-plus"></span>Add PPT</button>
+				<button type="button" class="btn btn-danger" id="add_btn"><span class="glyphicon glyphicon-plus"></span>Add Notes</button>
+			</div>
+		</div>
+	</div>
+	<div style="margin-left: 260px;"></div>
+	<div class="modal fade text-center" id="popUpWindow">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+            		<button type="button" class="close" data-dismiss="modal">&times;</button>
+            		<h4 class="modal-title">File Uploader</h4>
+        		</div>
+        		<div class="modal-body">
+        			<div class="row">
+				    	<div class="col-xs-12">
+				        	<div class="panel panel-default">
+				          		<div class="panel-body">
+				            		<span class="glyphicon glyphicon-cloud-upload" id="file_gyphicon"></span>
+				            		<h2 id="text">File Uploader</h2>
+				            		<h4>Student's Corner</h4>
+			            			<div class="progress">
+			              				<div class="progress-bar progress-bar-striped active progress-bar-success" role="progressbar"></div>
+			            			</div>
+			            			<button class="btn btn-lg upload-btn" type="button">Upload File</button>
+			            			<input id="upload-input" type="file" name="uploads[]" multiple="multiple"></br>
+			            			<script type="text/javascript">
+			            			
+			            				$('.upload-btn').on('click',function(){
+										$('#upload-input').click();
+										$('.progress-bar').text('0%');
+										$('.progress-bar').width('0%');
+									});
+									$('#upload-input').on('change', function(){
+										var files=$(this).get(0).files;
+										if(files.length > 0){
+											var formData = new FormData();
+											for(var i=0;i<files.length;i++){
+												var file = files[i];
+												formData.append('uploads[]', file, file.name);
+											}
+										$.ajax({
+											url : '/upload',
+											type : 'POST',
+											data : formData,
+											processData : false,
+											contentType : false,
+											success : function(data){
+												console.log('Upload Successful');
+											},
+											xhr: function(){
+												//create Http request
+												var xhr = new XMLHttpRequest();
+												//listen to the progress event
+												xhr.upload.addEventListener('progress', function(evt){
+													if(evt.lengthComputable){
+														var percentageComplete = evt.loaded / evt.total;
+														percentageComplete = parseInt(percentageComplete * 100);
+
+														$('.progress-bar').text(percentageComplete + '%');
+														$('.progress-bar').width(percentageComplete + '%');
+
+														if (percentageComplete === 100){
+															$('.progress-bar').html('Done');
+														}
+													}
+												},false);
+												return xhr;
+												}
+											});
+										}
+									});
+
+			            			</script>
+				          		</div>
+				        	</div>
+				      </div>
+    				</div>
+  				</div>
+
+  				<div class="modal-footer">
+          			<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        		</div>
+        	</div>
+		</div>
+	</div>
+</body>
+</html>
