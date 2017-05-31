@@ -31,35 +31,52 @@
        background-color: #27B6AF;
        border-style: none;
        text-align: center; 
-       margin: 9% auto 20% 18%;
+       margin: 9% auto 0% -21%;
+    }
+    #box_ul li{
+      width: 200px;
+      display: inline-block;
+      float: left;
+      text-decoration: none;
+      margin-right: 15px;
+    }
+    #box_ul{
+      width: 138%;
+      height: 130px;
     }
 </style>
 <body>
     <h2 style="margin: 2% 0 0 33%;">Academic Calendar</h2>
     <div id="calendar">
-        <iframe src="https://calendar.google.com/calendar/embed?title=Institute%20of%20Engineering%20%26%20Management%2C%20Kolkata%20Ashram%20Campus&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;height=600&amp;wkst=1&amp;hl=en&amp;bgcolor=%23ccccff&amp;src=97gp8roefl8ocrv9ko0h90pse4%40group.calendar.google.com&amp;color=%238C500B&amp;ctz=Asia%2FCalcutta" style="border:solid 1px #777" width="650" height="500" frameborder="2" scrolling="yes"></iframe>
-    </div>
-    <div style="float: right;margin: -4% 5% auto">
-        <h2>Attendance Summary</h2>
-        <div id="box">
+        <!-- <iframe src="https://calendar.google.com/calendar/embed?title=Institute%20of%20Engineering%20%26%20Management%2C%20Kolkata%20Ashram%20Campus&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;height=600&amp;wkst=1&amp;hl=en&amp;bgcolor=%23ccccff&amp;src=97gp8roefl8ocrv9ko0h90pse4%40group.calendar.google.com&amp;color=%238C500B&amp;ctz=Asia%2FCalcutta" style="border:solid 1px #777" width="650" height="500" frameborder="2" scrolling="yes"></iframe> -->
+        <iframe src="https://calendar.google.com/calendar/embed?title=Institute%20of%20Engineering%20%26%20Management%2C%20Kolkata%20Ashram%20Campus&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;height=600&amp;wkst=1&amp;hl=en&amp;bgcolor=%23ccccff&amp;src=bn0uq8knv7bvmlhtlmemop4iio%40group.calendar.google.com&ctz=Asia/Calcutta" style="border:solid 1px #777" width="650" height="350" frameborder="2" scrolling="yes"></iframe>
+    
+        <h2 style="margin: 1% 0 0 35%">Attendance Summary</h2>
+        <ul id="box_ul">
+        <li><div id="box">
             <i class="fa fa-check fa-3x"></i>
             <p style="font-size: 25px;font-weight: bold;margin: 0;">5/6</p>
             <p style="font-size: 20px;">Classes Present</p>
-        </div>
+        </div></li>
 
-        <div id="box">
+        <li><div id="box">
             <i class="fa fa-calendar fa-3x"></i>
             <p style="font-size: 25px;font-weight: bold;margin: 0;">5/6</p>
             <p style="font-size: 20px;">Days Present</p>
-        </div>
+        </div></li>
 
-        <div id="box">
+        <li><div id="box">
             <i class="fa fa-percent fa-3x"></i>
             <p style="font-size: 25px;font-weight: bold;margin: 0;">56%</p>
             <p style="font-size: 20px;">Attendance</p>
-        </div>
+        </div></li>
+        </ul>
+    </div>
+    <div style="float: right;margin: -3% 1% 0% 0%">
+        <h2 style="margin: 0px 0 9% 9%">Announcements</h2>
+        <div style="height: 500px;width: 360px;border:1px solid black;padding: 5px 2px 2px 5px;font-size: 13px;" id="showAnnouncements"></div>
     </div>
 </body>
 
-<script type="text/javascript" src="teachers_homepage.js"></script>
+<script type="text/javascript" src="student_homepage.js"></script>
 </html>

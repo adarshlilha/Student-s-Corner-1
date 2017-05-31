@@ -34,6 +34,7 @@ function showFilesPage(){
 function showFiles(key,c){
   var filename = key;
   var filepath = words[key][0];
+  // filepath = filepath.substring(8);
   var filesize = words[key][1];
   var filedate = words[key][2].split(',')[0];
   var filetime = words[key][2].split(',')[1];
@@ -281,6 +282,39 @@ app.post('/student_myprofile_info' , function(req,res){
       });
  
 });
+app.post('/announcements' , function(req,res){
+  console.log('announcements');
+  var announcements_text = req.body.announcements_text;
+  var forClass = req.body.forClass;
+  client.query('insert into announcements (announcement , forClass ) values(?,?)' , [announcements_text,forClass] , function(err,result){
+    if(err){
+        res.status(500).send(err.toString());
+        }
+        else{
+          res.status(200).send("Announcement added.");
+        }
+  });
+});
+app.post('/getAnnouncements' , function(req,res){
+  client.query('select class from students where stu_id = ?',[req.session.auth.stu_id],function(err,rows){
+      if(err){
+        console.log(err);
+        res.status(500).send();
+      }
+      else{
+        console.log(rows[0].class);
+        client.query('select announcement from announcements where forClass = ?',rows[0].class,function(err,rows){
+         if(err){
+            console.log(err);
+            res.status(500).send();
+          }
+          else{ 
+          res.status(200).send(JSON.stringify(rows));
+          }
+        });
+      }
+  });
+});
 app.post('/login' , function (req,res){
   if(req.body.regorLogin == "register" && req.body.type == "Student"){
     var name = req.body.name;
@@ -438,6 +472,11 @@ app.get('/routine' , function(req,res){
   res.write(fs.readFileSync('routine.html'));
   res.end();
 });
+app.get('/student_homepage' , function(req,res){
+  res.write(showNavbar());
+  res.write(fs.readFileSync('student_homepage.html'));
+  res.end();
+});
 app.get('/teachers_homepage' , function(req,res){
   res.write(showNavbar());
   res.write(fs.readFileSync('teachers_homepage.html'));
@@ -574,9 +613,6 @@ app.get('/' , function(req,res){
 });
 app.get('/homepage' , function(req,res){
   if(req.session && req.session.auth && req.session.auth.stu_id){
-    console.log(req.session);
-    console.log(req.session.auth);
-    console.log(req.session.auth.stu_id);
     res.write(showNavbar());
     res.write(fs.readFileSync('student_homepage.html'));
     res.end();
@@ -624,13 +660,24 @@ app.get('/images/:image', function(req,res){
   res.sendFile(path.join(__dirname,'images',req.params.image));
 });
 
-/*app.post('/daily_routine',function(req,res){
-  var data = req.body.subject;
-  var data1 = JSON.stringify(data,null,2);
+app.post('/setDailyRoutine',function(req,res){
+  var data = req.body.subjects;
+  var daily_routine = fs.readFileSync('daily_routine.json'); 
+  daily_routine = JSON.parse(daily_routine);                 
+  var present_date = new Date().toLocaleDateString();  
+  daily_routine[present_date] = new Object();  
+
+  
+
+  for(var i=0;i<data.length;i++){
+    (daily_routine[present_date])[i] = data[i];
+  }
+
+  var data1 = JSON.stringify(daily_routine,null,2);
     fs.writeFile('daily_routine.json', data1 , function finished(err){
       console.log("All Set");
-    }); 
-});*/
+    });
+});
 app.post('/upload',function(req,res){
   var form = new formidable.IncomingForm();
   form.multiples = true;

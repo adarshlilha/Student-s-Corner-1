@@ -1,14 +1,34 @@
-/*var announcements_btn = document.getElementById("announcements_btn");
-announcements_btn.onclick() = function(){
-	var announcements_text = document.getElementById("announcements_text");
-	request.open('POST', '/teachers_homepage' , true);
-	request.setRequestHeader('Content-Type' , 'application/json');
-	request.send(JSON.stringify({announcements_text : announcements_text}));
-};*/
-var addDailyRoutine = document.getElementById("addDailyRoutine");
-addDailyRoutine.onclick = function(){
+var add_announcement = document.getElementById("add_announcement");
+add_announcement.onclick = function(){
 	var request = new XMLHttpRequest();
+	var announcements_text = document.getElementById("announcements_text").value;
+	var e = document.getElementById("forClass");
+	var forClass = e.options[e.selectedIndex].text;
+
 	request.onreadystatechange = function(){
+		if (request.readyState === XMLHttpRequest.DONE){
+			if (request.status === 200){
+  				console.log('announcement added');
+   			}
+		}
+	}
+
+	request.open('POST', '/announcements' , true);
+	request.setRequestHeader('Content-Type' , 'application/json');
+	request.send(JSON.stringify({announcements_text : announcements_text , forClass : forClass}));
+};
+
+
+
+addDailyRoutine.onclick = function(){
+	var addDailyRoutine = document.getElementById("addDailyRoutine");
+	var subjectsArray = document.getElementsByClassName('subject');
+	var request = new XMLHttpRequest();
+	var i;var subjects=[];
+    for (i = 0; i < subjectsArray.length; i++){
+      subjects.push(document.getElementsByClassName('subject')[i].value);
+    }
+	/*request.onreadystatechange = function(){
 		if (request.readyState === XMLHttpRequest.DONE){
 			if(request.status === 200){
 				alert("Data inserted!!");
@@ -20,7 +40,11 @@ addDailyRoutine.onclick = function(){
 				alert("Server error");
 			}
 		}
-	}
+	}*/
+	request.open('POST', '/setDailyRoutine' , true);
+	request.setRequestHeader('Content-Type' , 'application/json');
+	request.send(JSON.stringify({subjects : subjects}));
+};
 	// var subject = JSON.stringify(document.getElementsByClassName("subject"));
 	/*request({
     	url: "/daily_routine",
@@ -33,7 +57,7 @@ addDailyRoutine.onclick = function(){
 */
 	// var subject = document.getElementsByClassName("subject");
 	// subject = JSON.stringify(subject);
-	var sub = [];
+	/*var sub = [];
 	var subject = [];
 	for (var i=0;i<30;i++){
 		sub[i] = document.getElementsByClassName("subject")[i].value;
@@ -42,8 +66,8 @@ addDailyRoutine.onclick = function(){
 		request.setRequestHeader('Content-Type' , 'application/json');
 		request.send(JSON.stringify({'subject' : subject[i]}));
 	}
-		
+	*/	
 		
 		
 	//}
-}
+//}
