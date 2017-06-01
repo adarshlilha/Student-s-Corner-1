@@ -60,3 +60,4 @@ signin.onclick = function() {
 	request.setRequestHeader('Content-Type' , 'application/json');
 	request.send(JSON.stringify({email: email , password: password, regorLogin : regorLogin , type : type}));
 };
+

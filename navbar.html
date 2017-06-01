@@ -54,12 +54,12 @@
 				font-size: 18px;
 				margin-left: 25px;
 			}
-			.active{
+			#sidebar_items>ul>li.active{
 				/*color: #575757;*/
 				opacity: 1;
 				background: #CC181E;
 			}
-			#sidebar_items>ul>li>a.active,#sidebar_items>ul>li>i{
+			#sidebar_items>ul>li.active>a,#sidebar_items>ul>li.active>i{
 				color: #fff;
 			}
 			.navbar-default{
@@ -109,30 +109,19 @@
 				</div>
 				<div id="sidebar_items">
 					<ul class="testing">
-						<li class="active">
-							<i class="fa fa-home fa-2x"></i>
-							<a  href="" id="homepage">HOME</a>
-						</li>
-						<li class=""><i class="fa fa-file-text fa-2x"></i><a id="showfiles" href="">FILES</a></li>
-						<li class=""><i class="fa fa-table fa-2x"></i><a href="http://localhost:8080/routine">ROUTINE</a></li>
-						<li class=""><i class="fa fa-check fa-2x"></i><a href="#">ATTENDANCE</a></li>
-						<li class=""><i class="fa fa-comments-o fa-2x"></i><a href="#">FEEDBACK</a></li>
+						<li class="active"><i class="fa fa-home fa-2x"></i><a href="#">HOME</a></li>
+						<li><i class="fa fa-file-text fa-2x"></i><a href="#">FILES</a></li>
+						<li><i class="fa fa-table fa-2x"></i><a href="#">ROUTINE</a></li>
+						<li><i class="fa fa-check fa-2x"></i><a href="#">ATTENDANCE</a></li>
+						<li><i class="fa fa-comments-o fa-2x"></i><a href="#">FEEDBACK</a></li>
 					</ul>
-					<script type="text/javascript">
-						$(document).ready(function(){
-  $('.testing li a').click(function(){
-    $('li a').removeClass("active");
-    $(this).addClass("active");
-});
-});
-					</script>
 				</div>
 			</div>
 			<div class="navbar navbar-default navbar-static-top">
 				<div class="container-fluid">
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#search_bar">
-							<i class="fa fa-search" style="color: black"></i>
+							<i class="fa fa-search"></i>
 						</button>
 						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavbar">
 							<i class="fa fa-bars"></i>
@@ -151,7 +140,7 @@
 							<li class="dropdown"><a href="#" id="loggedInUser"  style="color: white;"> Your Name </a>
 							<li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="caret" style="color: white;"></span></a>
 								<ul class="dropdown-menu text-center">
-										<li style="color: black;"><a id="profileLink" href="">My Profile</li>
+										<li style="color: black;">My Profile</li>
 										<li><a href="http://localhost:8080/logout">Logout</a></li>
 								</ul>
 							</li>
@@ -161,82 +150,4 @@
 			</div>
 		</div>
 	</body>
-	<script type="text/javascript">
-	/*var path = window.location.pathname.substring(1);
-$('.wrapper>.sidebar>#sidebar_items>.testing>li>a').parent().addClass('active');*/
-
-	var request0 = new XMLHttpRequest();
-	request0.onreadystatechange = function(){
-		if (request0.readyState === XMLHttpRequest.DONE){
-			if (request0.status === 200){
-  				document.getElementById("loggedInUser").innerHTML = request0.responseText;
-   			}
-		}
-	}
-	request0.open('POST', '/getUsersName', true);
-	request0.setRequestHeader('Content-Type' , 'application/json');
-	request0.send();
-
-	var request1 = new XMLHttpRequest();
-	request1.onreadystatechange = function(){
-		if (request1.readyState === XMLHttpRequest.DONE){
-			if (request1.status === 200){
-				if (request1.responseText == 'student'){
-					document.getElementById("profileLink").href="http://localhost:8080/student_myprofile";
-				}
-				else if (request1.responseText == 'teacher'){
-					document.getElementById("profileLink").href="http://localhost:8080/teachers_myprofile";
-				}
-   			}
-		}
-	}
-	request1.open('POST', '/getProfileUrl', true);
-	request1.setRequestHeader('Content-Type' , 'application/json');
-	request1.send();
-
-	var request2 = new XMLHttpRequest();
-	request2.onreadystatechange = function(){
-		if (request2.readyState === XMLHttpRequest.DONE){
-			if (request2.status === 200){
-				if (request2.responseText == 'student'){
-					document.getElementById("showfiles").href="http://localhost:8080/student_showfiles";
-				}
-				else if (request2.responseText == 'teacher'){
-					document.getElementById("showfiles").href="http://localhost:8080/teachers_showfiles";
-				}
-   			}
-		}
-	}
-	request2.open('POST', '/getProfileUrl', true);
-	request2.setRequestHeader('Content-Type' , 'application/json');
-	request2.send();
-
-	var request3 = new XMLHttpRequest();
-	request3.onreadystatechange = function(){
-		if (request3.readyState === XMLHttpRequest.DONE){
-			if (request3.status === 200){
-				if (request3.responseText == 'student'){
-					document.getElementById("homepage").href="http://localhost:8080/student_homepage";
-				}
-				else if (request3.responseText == 'teacher'){
-					document.getElementById("homepage").href="http://localhost:8080/teachers_homepage";
-				}
-   			}
-		}
-	}
-	request3.open('POST', '/getProfileUrl', true);
-	request3.setRequestHeader('Content-Type' , 'application/json');
-	request3.send();
-
-/*var selector = '.wrapper .sidebar #sidebar_items .testing li';
-
-$(selector).on('click', function(){
-    $(selector).removeClass('active');
-    $(this).addClass('active');
-});*/
-
-
-
-
-	</script>
 </html>

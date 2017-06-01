@@ -42,7 +42,7 @@
 		<div id="details" class="text-center">
 			<h3><strong>Department :</strong> BCA</h3>
 			<h3><strong>Class :</strong> BCA 3A</h3>
-			<h3><strong>Date :</strong> 01/01/1994</h3>
+			<h3><strong>Date :</strong> <div style="float: right;" id="today_date">01/01/1994</div></h3>
 		</div>
 		<button type="button" class="btn btn-primary">Take Attendance</button>
 		<button type="button" class="btn btn-primary">Modify Attendance</button>
@@ -68,4 +68,8 @@
 		</div>
 	</div>
 </body>
+<script>
+	var present_date = new Date().toLocaleDateString();
+	document.getElementById('today_date').innerHTML = '&nbsp'+present_date;
+</script>
 </html>

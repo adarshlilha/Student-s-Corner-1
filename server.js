@@ -14,14 +14,11 @@ var app = express();
 app.use(morgan('combined'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-var name;
+app.set('json spaces', 4);
 var words = fs.readFileSync('uploads.json');
 words = JSON.parse(words);
-
-/*var daily_rout = fs.readFileSync('daily_routine.json');
-daily_rout = JSON.parse(daily_rout);
-console.log(daily_rout);*/
-
+var json2csv = require('json2csv');
+var csv = require('csv-parser');
 function showNavbar(){
 	var template = fs.readFileSync('navbar.html');
 	return template;
@@ -34,7 +31,6 @@ function showFilesPage(){
 function showFiles(key,c){
   var filename = key;
   var filepath = words[key][0];
-  // filepath = filepath.substring(8);
   var filesize = words[key][1];
   var filedate = words[key][2].split(',')[0];
   var filetime = words[key][2].split(',')[1];
@@ -65,22 +61,22 @@ function showFiles(key,c){
 }
 
 var count = -1;var count2 = -1;
-function aas(name,roll){
+function studentNames(name,roll){
   var name = name;
   var roll = roll;
   count++;count2++;
-  var template1 = `
-      <div id="students">
-        <p>${name}</p>
-        <p style="margin-left: 100px";>${roll}</p>
-        <button type="button" class="p_a" id="${count}0" value="P" onclick="replyclick(this.id)">P</button>
-        <button type="button" class="p_a" id="${count}1" value="P" onclick="replyclick(this.id)">P</button>
-        <button type="button" class="p_a" id="${count}2" value="P" onclick="replyclick(this.id)">P</button>
-        <button type="button" class="p_a" id="${count}3" value="P" onclick="replyclick(this.id)">P</button>
-        <button type="button" class="p_a" id="${count}4" value="P" onclick="replyclick(this.id)">P</button>
-        <button type="button" class="p_a" id="${count}5" value="P" onclick="replyclick(this.id)">P</button>
-        <p id="totalclass${count}${count2}">6</p>
-      </div>
+  var template1 = `<div id="students" >
+  <p>${name}</p>
+  <p class="roll" style="margin-left: 50px";>${roll}</p>
+  <button type="button" class="p_a" id="${count}0" value="P" onclick="replyclick(this.id)" style="margin-left: 50px";>P</button>
+  <button type="button" class="p_a" id="${count}1" value="P" onclick="replyclick(this.id)">P</button>
+  <button type="button" class="p_a" id="${count}2" value="P" onclick="replyclick(this.id)">P</button>
+  <button type="button" class="p_a" id="${count}3" value="P" onclick="replyclick(this.id)">P</button>
+  <button type="button" class="p_a" id="${count}4" value="P" onclick="replyclick(this.id)">P</button>
+  <button type="button" class="p_a" id="${count}5" value="P" onclick="replyclick(this.id)">P</button>
+  <label id="totalclass${count}${count2}" for="p_a" class="totalclassp_a">6</label>
+</div>
+</table>
   <style>
   #students{
     margin-left:240px;
@@ -89,7 +85,7 @@ function aas(name,roll){
     font-weight: bold;
     display: inline-block;
     padding: 10px;
-    margin-right: 50px;
+    margin-right: 10px;
   }
   .p_a{
     background: green;
@@ -119,8 +115,9 @@ function aas(name,roll){
       }
     }
   </script>`;
-  return template1;
+	return template1;
 }
+
 //Path Redirects
 app.use('/', express.static(__dirname + '/www')); // redirect root
 app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js')); // redirect bootstrap JS
@@ -148,7 +145,6 @@ client.connect(function(err){
     console.log('Connection established');
 }
 });
-
 //Password Hashing Function
 function hash(input,salt){
   var hashedInput = crypto.pbkdf2Sync(input,salt,10000,512,'sha512');
@@ -157,7 +153,10 @@ function hash(input,salt){
 process.on('uncaughtException', function (err) {
     console.log(err);
 });
-
+app.post('/teachers_homepage' , function(req,res){
+  var announcements_text = req.body.announcements_text;
+  client.query('insert into announcements (announcements) values(?) , [announcements_text]');
+});
 //Login & Signup Request
 app.post('/admin_login' , function(req,res){
   var admin_username = req.body.admin_username;
@@ -176,7 +175,7 @@ app.post('/admin_login' , function(req,res){
           res.writeHead(200, {'Content-Type':'application/json'});
           res.write(username);
           res.end();
-        }else{
+       }else{
           res.status(403).send('Username/Password is wrong\n');
         }
       }
@@ -226,95 +225,6 @@ app.post('/admin_panel' , function(req,res){
   }
 });
 
-app.post('/getUsersName' , function(req,res){
-  res.writeHead(200, {'Content-Type':'application/json'});
-  res.write(req.session.auth.stu_name);
-  res.end();
-});
-
-app.post('/getProfileUrl' , function(req,res){
-  res.writeHead(200, {'Content-Type':'application/json'});
-  res.write(req.session.auth.type);
-  res.end();
-});
-
-app.post('/getStudentDetails', function(req,res){
-  client.query("select * from students where stu_id=?",[req.session.auth.stu_id],function(err,result){
-  if(err){
-        res.status(500).send(err.toString());
-        }
-        else{
-          // res.status(200).send(result);
-          res.status(200).send(JSON.stringify(result[0]));
-        }
-  });
-});
-app.post('/teachers_myprofile_info',function(req,res){
-  var gender = req.body.gender;
-  var mobile = req.body.mobile;
-  var dob = req.body.dob;
-  var present_address = req.body.present_add;
-  var permanent_address = req.body.permanent_add;
-  var classes = req.body.classes;
-  client.query('update teachers set gender=?,mobile=?,dob=?,present_address=?,permanent_address=?,class_teacher_of=? where tech_id=?', [gender,mobile,dob,present_address,permanent_address,classes,req.session.auth.tech_id],function(err,result){ 
-    if(err){
-      res.status(500).send(err.toString());
-    }
-    else{
-      res.end();
-    }
-  });
-});
-app.post('/student_myprofile_info' , function(req,res){
-  var gender = req.body.gender;
-  var mobile = req.body.mobile;
-  var dob = req.body.dob;
-  var present_address = req.body.present_add;
-  var permanent_address = req.body.permanent_add;
-  var classes = req.body.classes;
-  client.query('update students set gender=?,mobile=?,dob=?,present_address=?,permanent_address=?,class=? where stu_id=?', [gender,mobile,dob,present_address,permanent_address,classes,req.session.auth.stu_id],function(err,result){ 
-        if(err){
-          res.status(500).send(err.toString());
-        }
-        else{
-          res.end();
-        }
-      });
- 
-});
-app.post('/announcements' , function(req,res){
-  console.log('announcements');
-  var announcements_text = req.body.announcements_text;
-  var forClass = req.body.forClass;
-  client.query('insert into announcements (announcement , forClass ) values(?,?)' , [announcements_text,forClass] , function(err,result){
-    if(err){
-        res.status(500).send(err.toString());
-        }
-        else{
-          res.status(200).send("Announcement added.");
-        }
-  });
-});
-app.post('/getAnnouncements' , function(req,res){
-  client.query('select class from students where stu_id = ?',[req.session.auth.stu_id],function(err,rows){
-      if(err){
-        console.log(err);
-        res.status(500).send();
-      }
-      else{
-        console.log(rows[0].class);
-        client.query('select announcement from announcements where forClass = ?',rows[0].class,function(err,rows){
-         if(err){
-            console.log(err);
-            res.status(500).send();
-          }
-          else{ 
-          res.status(200).send(JSON.stringify(rows));
-          }
-        });
-      }
-  });
-});
 app.post('/login' , function (req,res){
   if(req.body.regorLogin == "register" && req.body.type == "Student"){
     var name = req.body.name;
@@ -364,8 +274,8 @@ app.post('/login' , function (req,res){
         var salt = dbString.split('$')[2];
         var hashedPassword = hash(password,salt)
         if (hashedPassword === dbString){
-          req.session.auth = {stu_id : result[0].stu_id, stu_name : result[0].name,type : 'student'};
-          name = JSON.stringify(result[0].name);
+          req.session.auth = {stu_id : result[0].stu_id};
+          var name = JSON.stringify(result[0].name);
           res.writeHead(200, {'Content-Type':'application/json'});
           res.write(name);
           res.end();
@@ -390,7 +300,7 @@ app.post('/login' , function (req,res){
         var salt = dbString.split('$')[2];
         var hashedPassword = hash(password,salt)
         if (hashedPassword === dbString){
-          req.session.auth = {tech_id : result[0].tech_id,type : 'teacher'};
+          req.session.auth = {tech_id : result[0].tech_id};
           var name = JSON.stringify(result[0].name);
           res.writeHead(200, {'Content-Type' : 'application/json'});
           res.write(name);
@@ -439,120 +349,92 @@ app.post('/login' , function (req,res){
   }
 });
 
-
-app.get('/students',function(req,res){
-  var obj = xlsx.parse(fs.readFileSync(__dirname + '/myfile.xlsx'));
-  var total_students = (obj[0].data).length;
-  for (var i=2;i<total_students;i++){
-    res.write(obj[0].data[i][0] + '\n');
-    res.end();
-  }
+var dataArray = [];
+var obj = xlsx.parse(fs.readFileSync('student_list/BCA/BCA2B.xlsx'));
+var total_students = (obj[0].data).length;
+var present_date = new Date().toLocaleDateString();
+app.post('/qaz11',function(req,res){
+  
+  var numberOfClasses = req.body.numberOfClasses;
+  var roll = req.body.roll;
+  var i = 0;
+  fs.createReadStream('attendance/BCA/BCA2B.csv')
+  .pipe(csv())
+  .on('data', function (data) {
+    data[present_date] = numberOfClasses[i];
+    i++;
+    dataArray.push(data);
+  })
+  .on('end', function(){
+    var result = json2csv({ data: dataArray, fields: Object.keys(dataArray[0]) });
+    fs.writeFileSync('attendance/BCA/BCA2B.csv', result);
+  });
+  res.status(200).send('Done');
 });
 
 app.get('/aa',function(req,res){
-  var roll_no;
-  var present_date = new Date().toLocaleDateString();
-  var attendance = fs.readFileSync('attendance.json'); // Reading JSON file
-  attendance = JSON.parse(attendance); 
   res.write(showNavbar());
   res.write(fs.readFileSync('aa.html'));
-  var obj = xlsx.parse(fs.readFileSync(__dirname + '/myfile.xlsx'));
-  var total_students = (obj[0].data).length;
-  attendance[present_date] = new Object();
-  for (var i=2;i<total_students;i++){
-    roll_no = obj[0].data[i][1];
-    res.write(aas(obj[0].data[i][0].replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();}),obj[0].data[i][1]));
-    (attendance[present_date])[roll_no] = 50;
-  }
-  console.log(attendance);
-  res.end();
-});
-app.get('/routine' , function(req,res){
-  res.write(showNavbar());
-  res.write(fs.readFileSync('routine.html'));
-  res.end();
-});
-app.get('/student_homepage' , function(req,res){
-  res.write(showNavbar());
-  res.write(fs.readFileSync('student_homepage.html'));
-  res.end();
-});
-app.get('/teachers_homepage' , function(req,res){
-  res.write(showNavbar());
-  res.write(fs.readFileSync('teachers_homepage.html'));
-  res.end();
-
-  /*var announcements_text = req.body.announcements_text;
-  client.query('insert into announcements (announcements) values(?) , [announcements_text]');*/
-  /*var d_routine = `<button type='submit' id="addDailyRoutine">Add </button>
-    <script>
-      var dr1 = document.getElementById('addDailyRoutine');
-      dr1.onclick = function(){
-        var f = (function(){
-          var xhr= [],numbers;
-          for(i=0;i<10;i++){
-            numbers = document.getElementByClassName('subject')[i].innerHTML;
-            try{
-              (function(i){
-                xhr[i] = new XMLHttpRequest();
-                  console.log(numbers);
-                  xhr[i].open("POST", '/daily_routine', true);
-                  xhr[i].setRequestHeader('Content-Type' , 'application/json');
-                  xhr[i].send(JSON.stringify({"numbersl" : numbers}));
-              })(i);
-            }
-            catch (err) {
-              console.log(err.ToString());
-            }
-          }
-        })();
-      };
-    </script> `
-    res.write(d_routine);
-  res.end();*/
-});
-
-app.get('/attendance',function(req,res){
-  // var excel_attendance = JSON.stringify(xlsx.parse(__dirname + '/myfile.xlsx')); // parses a file
-  var obj = xlsx.parse(fs.readFileSync(__dirname + '/myfile.xlsx')); //parses a buffer
-  // obj[0].data[0][3] = new Date((obj[0].data[0][3] - (25567 + 1))*86400*1000);
-  // obj[0].data[0][3] = obj[0].data[0][3].toLocaleDateString();
   console.log(JSON.stringify(obj));
-  var attendance = fs.readFileSync('attendance.json'); // Reading JSON file
-  attendance = JSON.parse(attendance);                 // Changing JSON to text
-  var present_date = new Date().toLocaleDateString();  // get present date
-  
-  attendance[present_date] = new Object();            //declare new object with present date
-  var roll_no;
-  var total_classes_present;
-  var total_students = (obj[0].data).length;          // get total no of rows of the attendance excel sheet
-  for (var i=2;i<total_students;i++){
-    roll_no = obj[0].data[i][1];
-    total_classes_present = obj[0].data[i][9];
-    // console.log(obj[0].data[i][1]);
-    (attendance[present_date])[roll_no] = total_classes_present;
+  for (var i=1;i<total_students;i++){
+    res.write(studentNames(obj[0].data[i][0],obj[0].data[i][1]));
   }
-  var data1 = JSON.stringify(attendance,null,2);
-    fs.writeFile('attendance.json', data1 , function finished(err){
-      console.log("All Set");
-    });
-  // console.log(total_students);
-  // // (attendance[present_date])[roll_no] = 6;
-  // // attendance[present_date] = ;
-  // // console.log
-
-  // console.log(attendance);
-  // console.log(attendance['23/4/2017']);
-  // // attendance[obj[0].data[0][3]] = new Object();
-  // // attendance[obj[0].data[0][3]]
-  res.send("Hello");
+  var qaz = `<button type="submit" id="subattndc">Take attendance</button>
+  <script>
+    var qaz1 = document.getElementById("subattndc");
+    qaz1.onclick = function(){
+      var f = (function(){
+        var i;var roll=[],numberOfClasses=[];
+        for (i = 0; i < ${total_students}-1; i++){
+          numberOfClasses.push(document.getElementsByClassName('totalclassp_a')[i].innerHTML);
+          roll.push(document.getElementsByClassName('roll')[i].innerHTML);
+        }
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", '/qaz11', true);
+        xhr.setRequestHeader('Content-Type' , 'application/json');
+        xhr.send(JSON.stringify({"numberOfClasses" : numberOfClasses,"roll": roll}));
+      })();
+    };
+  </script>`;
+  res.write(qaz);
+  res.end();
 });
-
+var roll_noo;
 app.get('/showAttendance' , function(req,res){
-  var aa = fs.readFileSync('attendance.json');
+  
+  client.query('select roll_no from students where stu_id = ?',[req.session.auth.stu_id],function(err,result){
+    if(err) {
+      throw err;
+      console.log("error");
+    } else {
+      roll_noo = result[0].roll_no;
+      console.log(typeof(roll_noo));
+      console.log(roll_noo);
+      const csvFile = 'attendance/BCA/BCA2B.csv';
+      const csvtojson = require('csvtojson');
+      csvtojson()
+      .fromFile(csvFile)
+      .on('json',(jsonObj)=>{
+        // console.log(jsonObj);
+        // console.log(typeof(jsonObj['Class Roll No']));
+        var roll1 = jsonObj['Class Roll No'];
+        // console.log(roll1);
+        if (roll1 == roll_noo){
+          console.log(jsonObj[present_date]);
+          res.send('Number of Classes attended on ' + present_date + ' = ' + jsonObj[present_date]);
+        }
+        // console.log(jsonObj['Class Roll No']);
+      })
+      .on('done',(error)=>{
+        console.log('Done');
+      })
+    }
+  });
+  
+  /*var aa = fs.readFileSync('attendance.json');
   aa = JSON.parse(aa);
   var present_date = new Date().toLocaleDateString();
-  res.send('Number of Classes attended on ' + present_date + ' = ' + (aa[present_date])[req.session.auth.stu_id]);
+  res.send('Number of Classes attended on ' + present_date + ' = ' + (aa[present_date])[req.session.auth.stu_id]);*/
 });
 
 app.get('/checklogin' , function(req,res){
@@ -576,7 +458,7 @@ app.get('/logout', function (req, res) {
    delete req.session.auth;
    res.send('<html><body>Logged out!<br/><br/><a href="/">Back to home</a></body></html>');
 });
-app.get('/teachers_showfiles', function(req,res){
+app.get('/showfiles', function(req,res){
 	res.write(showNavbar());
 	res.write(showFilesPage());
   var c=0;
@@ -586,26 +468,15 @@ app.get('/teachers_showfiles', function(req,res){
 	}
 	res.end();
 });
-app.get('/student_showfiles', function(req,res){
-  res.write(showNavbar());
-  //res.write(showFilesPage());
-  var c=0;
-  for (var key in words){
-      res.write(showFiles(key,c));
-      c++;
-  }
-  res.end();
-});
 
 var port = 8080;
 app.listen(8080, function (){
   console.log(`Students Corner listening on port ${port}!`);
 });
-
+app.timeout = 120000;
 app.get('/' , function(req,res){
-  if(req.session.auth){
-    res.writeHead(301,{Location: 'localhost:8080/homepage'});
-    res.end();
+  if (req.session.auth){
+    res.redirect('/homepage');
   }
   else{
     res.sendFile('index.html' , {root : __dirname});
@@ -614,13 +485,11 @@ app.get('/' , function(req,res){
 app.get('/homepage' , function(req,res){
   if(req.session && req.session.auth && req.session.auth.stu_id){
     res.write(showNavbar());
-    res.write(fs.readFileSync('student_homepage.html'));
+    res.write(fs.readFileSync('homepage.html'));
     res.end();
   }
   else if(req.session && req.session.auth && req.session.auth.tech_id){
-    res.write(showNavbar());
-    res.write(fs.readFileSync('teachers_homepage.html'));
-    res.end();
+    res.sendFile('homepage.html' , {root : __dirname});
   }
   else{
     res.send("You are not allowed to access this page");
@@ -629,15 +498,8 @@ app.get('/homepage' , function(req,res){
 app.get('/uploader' , function(req,res){
   res.sendFile('uploader.html' , {root : __dirname});
 });
-app.get('/student_myprofile', function(req,res){
-  res.write(showNavbar());
-  res.write(fs.readFileSync('student_myprofile.html'));
-  res.end();
-});
-app.get('/teachers_myprofile', function(req,res){
-  res.write(showNavbar());
-  res.write(fs.readFileSync('teachers_myprofile.html'));
-  res.end();
+app.get('/student_profile', function(req,res){
+  res.sendFile('student_myprofile.html' , {root: __dirname});
 });
 app.get('/admin_log' , function(req,res){
   res.sendFile('admin_login.html' , {root : __dirname});
@@ -660,24 +522,6 @@ app.get('/images/:image', function(req,res){
   res.sendFile(path.join(__dirname,'images',req.params.image));
 });
 
-app.post('/setDailyRoutine',function(req,res){
-  var data = req.body.subjects;
-  var daily_routine = fs.readFileSync('daily_routine.json'); 
-  daily_routine = JSON.parse(daily_routine);                 
-  var present_date = new Date().toLocaleDateString();  
-  daily_routine[present_date] = new Object();  
-
-  
-
-  for(var i=0;i<data.length;i++){
-    (daily_routine[present_date])[i] = data[i];
-  }
-
-  var data1 = JSON.stringify(daily_routine,null,2);
-    fs.writeFile('daily_routine.json', data1 , function finished(err){
-      console.log("All Set");
-    });
-});
 app.post('/upload',function(req,res){
   var form = new formidable.IncomingForm();
   form.multiples = true;

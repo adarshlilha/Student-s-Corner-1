@@ -12,268 +12,215 @@
 	<link type="text/css" rel="stylesheet" href="css/style.css"/>
 	<style>
 		.clear{
-  			clear: both;
-		}
-		html{
-		  height: 100%;
-		}
-		body{
-		  background-color: rgb(233,234,238);
-		  height: 100%;
-		}
-		.navbar-default{
-		  background-color: #222222;
-		  border-bottom: none;
-		}
-		.navbar-default .navbar-brand{
-		  color: white;
-		}
-		.right-inner-addon {
-		  position: relative;
-		  margin-top: 1%;
-		}
+  clear: both;
+}
+html{
+  height: 100%;
+}
+body{
+  background-color: rgb(233,234,238);
+  height: 100%;
+}
+.navbar-default{
+  background-color: #222222;
+  border-bottom: none;
+}
+.navbar-default .navbar-brand{
+  color: white;
+}
+.right-inner-addon {
+  position: relative;
+  margin-top: 1%;
+}
 
-		.right-inner-addon input {
-		  padding-right: 30px;
-		  margin-bottom: 5px;
-		  height: 25px;
-		}
+.right-inner-addon input {
+  padding-right: 30px;
+  margin-bottom: 5px;
+  height: 25px;
+}
 
-		.right-inner-addon i {
-		  position: absolute;
-		  right: 0px;
-		  padding: 10px 12px;
-		  pointer-events: none;
-		}
-		#loggedInUser{
-		  font-weight: bold;
-		  float: left;
-		  margin-right: -20px;
-		}
-		#mainNavbar ul li{
-		  display: inline-block;
-		}
-		.fa-user{
-		  margin-right: -10px;
-		}
-		.homepage_div{
-		  width: 100%;
-		}
-		.left{
-		  background-color: #222222;
-		  /*width: 5%;*/
-		  height: 660px;
-		  position: fixed;
-		  margin-top: -4%;
-		}
-		.left ul{
-		  margin-top: 3%;
-		  margin-right: 2%;
-		}
-		.left>ul>li>a{
-		  padding-bottom: 30%;
-		  cursor: pointer;
-		  color: #c2afaf;
-		}
-		.right{
-		    float: left;
-		    padding-left:20px;
-		    /*width: 95%;*/
-			margin: 0% 0 0 2%;
-		}
-		.col-lg-11>h3{
-			margin-bottom: 5%;
-		}
-		#recent_act{
-		  border: 1px solid #b2b2b2;
-		  height: 500px;
-		  width: 400px;
-		  background-color: #fff;
-		  margin-left: 22%;
-		}
-		#recent_act p{
-		  border-bottom: 1px solid #d0d0d0;
-		  font-size: 30px;
-		  font-family: 'Raleway', sans-serif;
-		  font-weight: 500;
-		  margin-left: 10px;
-		}
+.right-inner-addon i {
+  position: absolute;
+  right: 0px;
+  padding: 10px 12px;
+  pointer-events: none;
+}
+#loggedInUser{
+  font-weight: bold;
+  float: left;
+  margin-right: -20px;
+}
+#mainNavbar ul li{
+  display: inline-block;
+}
+.fa-user{
+  margin-right: -10px;
+}
+.homepage_div{
+  width: 100%;
+}
+.left{
+  background-color: #222222;
+  /*width: 5%;*/
+  height: 660px;
+  position: fixed;
+  margin-top: -4%;
+}
+.left ul{
+  margin-top: 3%;
+  margin-right: 2%;
+}
+.left>ul>li>a{
+  padding-bottom: 30%;
+  cursor: pointer;
+  color: #c2afaf;
+}
+.right{
+    float: left;
+    padding-left:20px;
+    /*width: 95%;*/
+	margin: 0% 0 0 2%;
+}
+.col-lg-11>h3{
+	margin-bottom: 5%;
+}
+#recent_act{
+  border: 1px solid #b2b2b2;
+  height: 500px;
+  width: 400px;
+  background-color: #fff;
+  margin-left: 22%;
+}
+#recent_act p{
+  border-bottom: 1px solid #d0d0d0;
+  font-size: 30px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 500;
+  margin-left: 10px;
+}
 
-		#home_right{
-		  height: 500px;
-		  width: 500px;
-		  float: right;
-		}
-		#buttons{
-		  width: 400px;
-		}
-		#buttons button{
-		  margin-left: 1%;
-		  margin-bottom: 10px;
-		  border-radius: 6px;
-		  border-style: none;
-		}
-		#add_btn{
-		  background-color: #8DCA8F;
-		  padding: 12px 40px;
-		}
-		.glyphicon-plus,.glyphicon-thumbs-up,.glyphicon-thumbs-down{
-		  font-size: 27px;
-		  margin-bottom: 8px;
-		}
-		#like_btn{
-		  background-color: #5bc0de;
-		  padding: 12px 40px;
-		}
-		#unlike_btn{
-		  background-color: #D9544F;
-		  padding: 12.3px 4px;
-		  font-size: 14px;
-		}
-		#profile_img{
-			border: 2px solid #6BB248;
-			width: 200px;
-			height: 220px;
-			margin-left: 10%;
-			float: left;
-		}
-		#profile_img>img{
-			width: 196px;
-			height: 216px;
-		}
-		#details{
-			float: left;
-			margin-left: 10%;
-			font-size: 1.5rem;
-		}
-		#details p{
-			margin: 0 250px 10px;
-		}
-		#editbtn{
-			float: left;
-			margin-left: 10%;
-		}
-
-		#edit_stu_info tr td{
-			padding-bottom: 1em;
-		}
-		input[type="radio"] {
-		  margin-right: -60px;
-		}
-		input[type="checkbox"]{
-			width: 45px;
+#home_right{
+  height: 500px;
+  width: 500px;
+  float: right;
+}
+#buttons{
+  width: 400px;
+}
+#buttons button{
+  margin-left: 1%;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  border-style: none;
+}
+#add_btn{
+  background-color: #8DCA8F;
+  padding: 12px 40px;
+}
+.glyphicon-plus,.glyphicon-thumbs-up,.glyphicon-thumbs-down{
+  font-size: 27px;
+  margin-bottom: 8px;
+}
+#like_btn{
+  background-color: #5bc0de;
+  padding: 12px 40px;
+}
+#unlike_btn{
+  background-color: #D9544F;
+  padding: 12.3px 4px;
+  font-size: 14px;
+}
+#profile_img{
+	border: 2px solid #6BB248;
+	width: 200px;
+	height: 220px;
+	margin-left: 10%;
+	float: left;
+}
+#profile_img>img{
+	width: 196px;
+	height: 216px;
+}
+#details{
+	float: left;
+	margin-left: 10%;
+	font-size: 1.5rem;
+}
+#editbtn{
+	float: left;
+	margin-left: 10%;
 }
 </style>
 </head>
 <body id="share">
-	<div class="clear"></div>
-	<div class="homepage_div">
-		<div class="col-lg-11" style="margin-left: 10%;">
-			<h3 class="text-center">My Profile</h3>
-			<div id="profile_img">
-				<img src="https://1.bp.blogspot.com/-gLMD9tSPY9o/V6DKnA8OcQI/AAAAAAAAM5w/jWhZpKd7Bj0FC-VgrlGB_MVsBmECT4WWwCLcB/s400/nice-cute-image-lovely-baby.jpeg.jpg" alt="Adarsh Lilha">
+	<!-- <div class="navbar navbar-default navbar-static-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavbar">
+					<i class="fa fa-bars"></i>
+				</button>
+				<a href="index.html" class="navbar-brand">Students Corner</a>
 			</div>
-			<div id="details" style="width: 35%;">
-				<label for="#users_name" style="float: left;"><strong>NAME : </strong></label><p id="users_name">&nbsp;&nbsp;&nbsp;&nbsp;Adarsh Lilha</p>
 
-				<label for="#users_email" style="float: left;"><strong>EMAIL : </strong></label><p id="users_email">adarshlilha@gmail.com</p>
-
-				<label for="#users_gender" style="float: left;"><strong>GENDER : </strong></label><p id="users_gender">&nbsp;&nbsp;&nbsp;&nbsp;ss</p>
-
-				<label for="#users_mobile" style="float: left;"><strong>MOBILE : </strong></label><p id="users_mobile">&nbsp;&nbsp;&nbsp;&nbsp;ss</p>
-
-				<label for="#users_dob" style="float: left;"><strong>DATE OF BIRTH : </strong></label><p id="users_dob">&nbsp;&nbsp;&nbsp;&nbsp;ss</p>
-
-				<label for="#users_preadd" style="float: left;"><strong>PRESENT ADDRESS : </strong></label><p id="users_preadd">&nbsp;&nbsp;&nbsp;&nbsp;ss</p>
-
-				<label for="#users_peradd" style="float: left;"><strong>PERMANENT ADDRESS : </strong></label><p id="users_peradd">&nbsp;&nbsp;&nbsp;&nbsp;ss</p>
-
-				<label for="#users_dept" style="float: left;"><strong>DEPARTMENT : </strong></label><p id="users_dept">&nbsp;&nbsp;&nbsp;&nbsp;ss</p>
-				
-				<label for="#users_class" style="float: left;"><strong>CLASS : </strong></label><p id="users_class">&nbsp;&nbsp;&nbsp;&nbsp;ss</p>				
-			</div>
-			<div id="editbtn">
-				<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#edit_info">EDIT INFO</button>
+			<div class="navbar-collapse collapse" id="mainNavbar">
+				<ul class="nav navbar-nav navbar-right">
+					<li style="margin-top: 15px;color: white;"><i class="fa fa-user"></i></li>
+					<li class="dropdown"><a href="#" id="loggedInUser"  style="color: white;"> Your Name </a>
+					<li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="caret" style="color: white;"></span></a>
+						<ul class="dropdown-menu text-center">
+								<li>My Profile</li>
+								<li><a href="http://localhost:8080/logout">Logout</a></li>
+						</ul>
+					</li>
+				</ul>
 			</div>
 		</div>
-		<button type="button" class="btn btn-success" style="margin-left: 21%;margin-top: 1%;">ADD/CHANGE PHOTO</button>
+	</div> -->
+	<div class="clear"></div>
+	<div class="homepage_div">
+		<!-- <div class="col-lg-2 left">
+		 	<ul class="nav nav-pills nav-stacked" style="width: 50px;float: left;position: fixed;height: 100%;">
+			    <li class="active"><a href=""><i class="fa fa-file-text fa-2x " aria-hidden="true"></i></a></li>
+			    <li><a href=""><i class="fa fa-book fa-2x" aria-hidden="true"></i></a></li>
+			    <li><a href=""><i class="fa fa-table fa-2x" aria-hidden="true"></i></a></li>
+			    <li><a href=""><i class="fa fa-clock-o fa-2x" aria-hidden="true"></i></a></li>
+			    <li><a href="#">Link</a></li>
+		  	</ul>
+		</div> -->
+
+		<div class="col-lg-11" style="margin-left: 7%;">
+			<h3 class="text-center">My Profile</h3>
+			<div id="profile_img">
+				<img src="http://i68.tinypic.com/10r386e.jpg" alt="Adarsh Lilha">
+			</div>
+			<div id="details">
+				<p><strong>NAME : </strong>Adarsh Lilha</p>
+				<p><strong>EMAIL : </strong>adarshlilha@gmail.com</p>
+				<p><strong>MOBILE : </strong>+91-9800761699</p>
+				<p><strong>DATE OF BIRTH : </strong>29 January 1996</p>
+				<p><strong>ADDRESS : </strong>Kolkata</p>
+				<p><strong>DEPARTMENT : </strong>BCA</p>
+				<p><strong>CLASS : </strong>BCA3A</p>
+			</div>
+			<div id="editbtn">
+				<button type="button" class="btn btn-danger">EDIT INFO</button>
+			</div>
+		</div>
+
+		<button type="button" class="btn btn-success" style="margin-left: 18%;margin-top: 1%;">ADD/CHANGE PHOTO</button>
+	</div>
+
+	<div style="margin-left: 17%;">
+		<h2>Summary</h2>
+		<div style="width:200px;height: 110px;border: 1px solid black;background-color: #27B6AF;border-style: none;text-align: center;float:left;"><i class="fa fa-check fa-3x"></i><p style="font-size: 25px;font-weight: bold;margin: 0;">5/6</p><p style="font-size: 20px;">Classes Present</p></div>
+
+		<div style="width:200px;height: 110px;border: 1px solid black;background-color: #27B6AF;border-style: none;text-align: center;float:left;margin-left: 5%;"><i class="fa fa-calendar fa-3x"></i><p style="font-size: 25px;font-weight: bold;margin: 0;">5/6</p><p style="font-size: 20px;">Days Present</p></div>
+
+		<div style="width:200px;height: 110px;border: 1px solid black;background-color: #27B6AF;border-style: none;text-align: center;float:left;margin-left: 5%;"><i class="fa fa-percent fa-3x"></i><p style="font-size: 25px;font-weight: bold;margin: 0;">56%</p><p style="font-size: 20px;">Attendance</p></div>
 	</div>
 	<div id="container" style="margin: 20px;width: 400px;height: 8px;">
 		
 	</div>
-
-	<div class="modal fade text-center" id="edit_info">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h2 class="modal-title">EDIT INFORMATION</h2>
-				</div>
-				<div class="modal-body">
-					<table id="edit_stu_info">
-						<tr>
-							<th>Name : </th>
-							<td><strong>pk</strong></td>
-						</tr>
-						<tr>
-							<th>Email : </th>
-							<td><strong>pk@gmail.com</strong></td>
-						</tr>
-						<tr>
-							<th>Gender : </th>
-							<td><input type="radio" name="gender" id="gender" value="M">Male<input type="radio" name="gender" id="gender" value="F">Female</td>
-						</tr>
-						<tr>
-							<th>Mobile : </th>
-							<td><input type="text" maxlength="10" placeholder="9087654321" id="mobile"></td>
-						</tr>
-						<tr>
-							<th>Date Of Birth : </th>
-							<td><input type="text" placeholder="yyyy/mm/dd" id="dob"></td>
-						</tr>
-						<tr>
-							<th>Present Address : </th>
-							<td><textarea id="present_add"></textarea></td>
-						</tr>
-						<tr>
-							<th>Permanent Address : </th>
-							<td><textarea id="permanent_add"></textarea></td>
-						</tr>
-						<tr>
-							<td><input type="checkbox" id="same_as" name="same_as">Same as present address</td>
-						</tr>
-						<tr>
-							<th>DEPARTMENT : </th>
-							<td><strong>BCA</strong></td>
-						</tr>
-						<tr>
-							<th>CLASS : </th>
-							<td>
-							<select id="classes">
-								<option value="BCA1A">BCA1A</option>
-								<option value="BCA1B">BCA1B</option>
-								<option value="BCA2A">BCA2A</option>
-								<option value="BCA2B">BCA2B</option>
-								<option value="BCA3A">BCA3A</option>
-								<option value="BCA3B">BCA3B</option>
-								<option value="BBA1A">BBA1A</option>
-								<option value="BBA1B">BBA1B</option>
-								<option value="BBA2A">BBA2A</option>
-								<option value="BBA2B">BBA2B</option>
-								<option value="BBA3A">BBA3A</option>
-								<option value="BBA3B">BBA3B</option>
-							</select>
-							</td>
-						</tr>
-					</table>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" data-dismiss="modal" id="addInfo">Submit</button>
-				</div>
-			</div>
-		</div>
-	</div>
 </body>
 </script>
-<script type="text/javascript" src="student_myprofile.js"></script>
 </html>
