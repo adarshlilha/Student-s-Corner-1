@@ -1,4 +1,4 @@
-# Student-s-Corner
+# Students Corner
 File Sharing Web Application built for College Project
 
 This application was built wherein students and teachers can sign up and then teachers can share files,annoucements,exam routine and daily routine with his/her students. Also attendance can be recorded by giving an excel sheet as an input.
