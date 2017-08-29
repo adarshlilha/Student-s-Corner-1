@@ -8,3 +8,9 @@ This application was built wherein students and teachers can sign up and then te
 ![alt text](https://s3.amazonaws.com/poly-screenshots.angel.co/Project/02/593181/72e325055566af506c359e5e37cea3bb-original.png)
 
 ![alt text](https://s3.amazonaws.com/poly-screenshots.angel.co/Project/02/593181/e980d606b6f47a25d6d633a6f64e7911-original.png)
+
+![alt text](http://i.imgur.com/lC4lY7w.jpg)
+
+![alt text](http://i.imgur.com/JmxxHSm.jpg)
+
+![alt text](http://i.imgur.com/undefined.jpg)
