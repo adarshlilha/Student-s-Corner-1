@@ -13,4 +13,4 @@ This application was built wherein students and teachers can sign up and then te
 
 ![alt text](http://i.imgur.com/JmxxHSm.jpg)
 
-![alt text](http://i.imgur.com/undefined.jpg)
+![alt text](http://i.imgur.com/OntjQq2.jpg)
